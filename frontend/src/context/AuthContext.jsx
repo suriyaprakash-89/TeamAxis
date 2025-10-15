@@ -16,7 +16,19 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       try {
         const decoded = jwt_decode(token);
-        // Set the user state from the decoded token's payload
+        const currentTime = Date.now() / 1000;
+        if (decoded.exp < currentTime) {
+          // Token is expired
+          console.log("Token expired. Logging out.");
+          localStorage.removeItem('token');
+        } else {
+          // Token is valid, set the user
+          setUser({ 
+              name: decoded.name, 
+              email: decoded.email, 
+              role: decoded.role 
+          });
+        }
         setUser({
           name: decoded.name,
           email: decoded.email,
