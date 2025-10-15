@@ -2,8 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
+import mongoose from "mongoose";
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 
+// Import all your routes
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
@@ -14,11 +16,11 @@ import moodBoardRoutes from "./routes/moodBoardRoutes.js";
 
 dotenv.config();
 connectDB();
+mongoose.set("strictQuery", true);
 
 const app = express();
-app.use(express.json());
+const whitelist = ["http://localhost:5173", "https://team-axis.vercel.app/"];
 
-const whitelist = ["http://localhost:5173", "https://teamaxis.onrender.com/"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
@@ -30,6 +32,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+app.use(express.json());
 
 app.get("/", (req, res) => res.send("API is running..."));
 app.use("/api/auth", authRoutes);
