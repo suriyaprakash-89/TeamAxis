@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: sales-marketing-api
+    env: node
+    rootDir: ./backend
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    envVars:
+      - key: MONGO_URI
+        fromDatabase:
+          name: your-mongodb-database-name
+          property: connectionString
+      - key: JWT_SECRET
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+
+  - type: static
+    name: sales-marketing-client
+    rootDir: ./frontend
+    plan: free
+    buildCommand: "npm run build"
+    publishDir: "dist"

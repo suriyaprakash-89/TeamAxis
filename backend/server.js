@@ -9,16 +9,28 @@ import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
 import invoiceRoutes from "./routes/invoiceRoutes.js";
-import reportRoutes from './routes/reportRoutes.js';
-import notificationRoutes from './routes/notificationRoutes.js';
-import moodBoardRoutes from './routes/moodBoardRoutes.js';
+import reportRoutes from "./routes/reportRoutes.js";
+import notificationRoutes from "./routes/notificationRoutes.js";
+import moodBoardRoutes from "./routes/moodBoardRoutes.js";
 
 dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
 app.use(express.json());
+
+const whitelist = ["http://localhost:5173", "https://teamaxis.onrender.com/"];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 // API Routes
 app.get("/", (req, res) => res.send("API is running..."));
@@ -26,9 +38,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/invoices", invoiceRoutes);
-app.use('/api/reports', reportRoutes);
-app.use('/api/notifications', notificationRoutes);
-app.use('/api/moodboard', moodBoardRoutes);
+app.use("/api/reports", reportRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use("/api/moodboard", moodBoardRoutes);
 
 // Middleware
 app.use(notFound);
