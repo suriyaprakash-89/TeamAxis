@@ -1,3 +1,5 @@
+// frontend/src/context/AuthContext.jsx
+
 import React, { createContext, useState, useEffect } from "react";
 import API from "../utils/api";
 import jwt_decode from "jwt-decode";
@@ -31,7 +33,6 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
       }
     }
-    // 2. THIS LINE UPDATES `loading` AFTER CHECKING THE TOKEN
     setLoading(false);
   }, []);
 
@@ -48,13 +49,11 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
-
     window.location.href = "/login";
   };
 
   return (
     <AuthContext.Provider value={{ user, login, logout, loading }}>
-      {/* 3. THIS LINE USES `loading` TO PREVENT RENDERING TOO EARLY */}
       {!loading && children}
     </AuthContext.Provider>
   );
