@@ -6,8 +6,7 @@ const AdminCategories = () => {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [editingCategory, setEditingCategory] = useState(null); // State to hold category being edited
-  const [loading, setLoading] = useState(true);
+  const [editingCategory, setEditingCategory] = useState(null); 
 
   useEffect(() => {
     fetchCategories();
@@ -31,7 +30,7 @@ const AdminCategories = () => {
 
     try {
       if (editingCategory) {
-        // Update logic
+        
         const toastId = toast.loading("Updating category...");
         await API.put(
           `/api/products/categories/${editingCategory._id}`,
@@ -39,13 +38,13 @@ const AdminCategories = () => {
         );
         toast.success("Category updated!", { id: toastId });
       } else {
-        // Create logic
+        
         const toastId = toast.loading("Creating category...");
         await API.post("/api/products/categories", categoryData);
         toast.success("Category created!", { id: toastId });
       }
       resetForm();
-      fetchCategories(); // Re-fetch to show updated list
+      fetchCategories(); 
     } catch (error) {
       toast.error(error.response?.data?.message || "Operation failed");
     }
@@ -57,7 +56,7 @@ const AdminCategories = () => {
         const toastId = toast.loading("Deleting category...");
         await API.delete(`/api/products/categories/${categoryId}`);
         toast.success("Category deleted!", { id: toastId });
-        fetchCategories(); // Re-fetch
+        fetchCategories(); 
       } catch (error) {
         toast.error(
           error.response?.data?.message || "Failed to delete category"

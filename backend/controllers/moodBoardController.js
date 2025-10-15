@@ -1,8 +1,5 @@
 import MoodBoardEntry from "../models/MoodBoardEntry.js";
 
-// @desc    Create a new mood board entry
-// @route   POST /api/moodboard
-// @access  Private
 export const createEntry = async (req, res) => {
   const { summary } = req.body;
 
@@ -16,19 +13,16 @@ export const createEntry = async (req, res) => {
   const entry = new MoodBoardEntry({
     user: req.user._id,
     summary,
-    image: req.file.path, // URL from multer-storage-cloudinary
+    image: req.file.path, 
   });
 
   const createdEntry = await entry.save();
   res.status(201).json(createdEntry);
 };
 
-// @desc    Get all mood board entries
-// @route   GET /api/moodboard
-// @access  Private
 export const getEntries = async (req, res) => {
   const entries = await MoodBoardEntry.find({})
-    .populate("user", "name") // Get the user's name
-    .sort({ createdAt: -1 }); // Show newest first
+    .populate("user", "name") 
+    .sort({ createdAt: -1 }); 
   res.json(entries);
 };

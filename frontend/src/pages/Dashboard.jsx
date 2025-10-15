@@ -1,10 +1,9 @@
-// frontend/src/pages/Dashboard.jsx
+
 
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import API from "../utils/api";
-// Recharts components can be added back if you want a sales chart
-// For now, focusing on the cards as requested.
+
 
 const DashboardCard = ({ title, value, icon }) => (
   <div className="bg-white p-6 rounded-lg shadow-md flex items-center">

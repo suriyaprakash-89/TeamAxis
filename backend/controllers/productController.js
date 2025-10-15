@@ -1,7 +1,6 @@
 import Product from "../models/Product.js";
 import Category from "../models/Category.js";
 
-// Category Controllers
 export const updateCategory = async (req, res) => {
   const { name, description } = req.body;
   const category = await Category.findById(req.params.id);
@@ -20,7 +19,7 @@ export const deleteCategory = async (req, res) => {
   const category = await Category.findById(req.params.id);
 
   if (category) {
-    // Optional: Check if any products are using this category before deleting
+    
     const productCount = await Product.countDocuments({ category: req.params.id });
     if (productCount > 0) {
       res.status(400).json({ message: 'Cannot delete category with active products.' });
@@ -45,7 +44,7 @@ export const getCategories = async (req, res) => {
   res.json(categories);
 };
 
-// Product Controllers
+
 export const createProduct = async (req, res) => {
   const { name, description, price, category, stock } = req.body;
   const product = new Product({

@@ -6,18 +6,17 @@ export const createTask = async (req, res) => {
   const task = new Task({ title, description, assignedTo, dueDate });
   const createdTask = await task.save();
 
-  // --- CREATE NOTIFICATION ON TASK CREATION ---
   await Notification.create({
     user: assignedTo,
     message: `You have been assigned a new task: "${title}"`,
-    link: `/tasks/${createdTask._id}`, // Optional link
+    link: `/tasks/${createdTask._id}`, 
   });
 
   res.status(201).json(createdTask);
 };
 
 export const getTasks = async (req, res) => {
-  // Salesperson sees their own tasks, Admin sees all
+
   const query = req.user.role === "Admin" ? {} : { assignedTo: req.user._id };
   const tasks = await Task.find(query).populate("assignedTo", "name");
   res.json(tasks);

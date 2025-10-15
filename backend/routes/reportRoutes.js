@@ -1,4 +1,4 @@
-// backend/routes/reportRoutes.js
+
 
 import express from "express";
 import { protect, admin } from "../middlewares/authMiddleware.js";

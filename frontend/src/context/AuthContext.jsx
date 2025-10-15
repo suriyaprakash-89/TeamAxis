@@ -1,7 +1,7 @@
-// frontend/src/context/AuthContext.jsx
+
 
 import React, { createContext, useState, useEffect } from "react";
-import API from "../utils/api"; // Changed from axios to API
+import API from "../utils/api";
 import jwt_decode from "jwt-decode";
 
 export const AuthContext = createContext();
@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // --- THIS useEffect IS NOW CORRECT ---
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -18,11 +18,11 @@ export const AuthProvider = ({ children }) => {
         const decoded = jwt_decode(token);
         const currentTime = Date.now() / 1000;
         if (decoded.exp < currentTime) {
-          // Token is expired
+          
           console.log("Token expired. Logging out.");
           localStorage.removeItem('token');
         } else {
-          // Token is valid, set the user
+          
           setUser({ 
               name: decoded.name, 
               email: decoded.email, 
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
           role: decoded.role,
         });
       } catch (error) {
-        // If token is invalid or expired
+        
         console.error("Invalid token:", error);
         localStorage.removeItem("token");
       }
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     const { data } = await API.post("/api/auth/login", { email, password });
     localStorage.setItem("token", data.token);
-    // Set user state from the API response directly
+    
     setUser({
       name: data.name,
       email: data.email,

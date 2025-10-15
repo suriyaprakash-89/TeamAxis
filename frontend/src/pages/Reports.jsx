@@ -10,7 +10,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Mock data for reports
 const performanceData = [
   { name: "Alice", tasksCompleted: 12 },
   { name: "Bob", tasksCompleted: 18 },

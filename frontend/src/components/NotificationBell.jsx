@@ -6,9 +6,8 @@ const NotificationBell = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Poll for notifications every 30 seconds
     const interval = setInterval(fetchNotifications, 30000);
-    fetchNotifications(); // Initial fetch
+    fetchNotifications(); 
     return () => clearInterval(interval);
   }, []);
 

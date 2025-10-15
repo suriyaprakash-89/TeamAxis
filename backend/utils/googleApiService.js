@@ -1,9 +1,6 @@
 import axios from "axios";
 import config from "../config/index.js";
 
-// Note: Full Speech-to-Text and Translate integrations require Google Cloud SDKs
-// and are more complex. These are simplified examples using REST APIs where possible.
-
 /**
  * Get a human-readable address from latitude and longitude.
  * @param {number} lat - Latitude
@@ -32,10 +29,6 @@ export const getAddressFromCoordinates = async (lat, lng) => {
  * @returns {Promise<string>} - Translated text.
  */
 export const translateText = async (text, targetLanguage = "en") => {
-  // This is a placeholder. A real implementation would use:
-  // const {Translate} = require('@google-cloud/translate').v2;
-  // const translate = new Translate({key: config.google.apiKey});
-  // const [translation] = await translate.translate(text, targetLanguage);
   console.log(`Translating "${text}" to ${targetLanguage}...`);
   return `[Translated] ${text}`;
 };
@@ -46,12 +39,6 @@ export const translateText = async (text, targetLanguage = "en") => {
  * @returns {Promise<string>} - The transcribed text.
  */
 export const transcribeAudio = async (audioUrl) => {
-  // This is a placeholder. A real implementation would use:
-  // const speech = require('@google-cloud/speech');
-  // const client = new speech.SpeechClient();
-  // const request = { audio: { uri: audioUrl }, config: { languageCode: 'en-US' } };
-  // const [response] = await client.recognize(request);
-  // return response.results.map(result => result.alternatives[0].transcript).join('\n');
   console.log(`Transcribing audio from ${audioUrl}...`);
   return "This is a placeholder for the audio transcript.";
 };

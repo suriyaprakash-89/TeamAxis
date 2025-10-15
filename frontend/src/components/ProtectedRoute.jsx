@@ -6,7 +6,7 @@ const ProtectedRoute = ({ adminOnly = false }) => {
   const { user, loading } = useContext(AuthContext);
 
   if (loading) {
-    return <div>Loading...</div>; // Or a spinner component
+    return <div>Loading...</div>; 
   }
 
   if (!user) {
@@ -14,7 +14,7 @@ const ProtectedRoute = ({ adminOnly = false }) => {
   }
 
   if (adminOnly && user.role !== "Admin") {
-    return <Navigate to="/" />; // Redirect non-admins from admin routes
+    return <Navigate to="/" />; 
   }
 
   return <Outlet />;

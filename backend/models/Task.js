@@ -19,7 +19,7 @@ const taskSchema = new mongoose.Schema(
       {
         url: String,
         mediaType: { type: String, enum: ["image", "video", "audio"] },
-        transcript: String, // For voice notes
+        transcript: String,
       },
     ],
     location: {

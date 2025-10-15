@@ -15,7 +15,7 @@ export const createInvoice = async (req, res) => {
 
   const createdInvoice = await invoice.save();
 
-  // Generate PDF and email it
+  
   const doc = new pdfkit();
   let buffers = [];
   doc.on("data", buffers.push.bind(buffers));
@@ -27,7 +27,7 @@ export const createInvoice = async (req, res) => {
   doc.fontSize(25).text(`Invoice #${createdInvoice._id}`);
   doc.fontSize(16).text(`Client: ${clientName}`);
   doc.text(`Total: $${totalAmount}`);
-  // Add more details to PDF...
+  
   doc.end();
 
   res.status(201).json(createdInvoice);

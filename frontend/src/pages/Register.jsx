@@ -25,12 +25,12 @@ const Register = () => {
     toast.promise(registrationPromise, {
       loading: "Registering...",
       success: (response) => {
-        // After successful registration, automatically log the user in.
+        
         login(email, password);
         navigate("/");
-        return "Registration successful!"; // This message will be shown in the success toast
+        return "Registration successful!"; 
       },
-      error: (err) => err.response?.data?.message || "Registration failed.", // This message will be shown in the error toast
+      error: (err) => err.response?.data?.message || "Registration failed.", 
     });
   };
 

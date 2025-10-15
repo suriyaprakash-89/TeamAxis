@@ -32,7 +32,7 @@ export const registerUser = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
-      token: generateToken(res, user), // <-- UPDATED
+      token: generateToken(res, user),
     });
   } else {
     res.status(400).json({ message: "Invalid user data" });
@@ -49,7 +49,7 @@ export const authUser = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
-      token: generateToken(res, user), // <-- UPDATED
+      token: generateToken(res, user), 
     });
   } else {
     res.status(401).json({ message: "Invalid email or password" });

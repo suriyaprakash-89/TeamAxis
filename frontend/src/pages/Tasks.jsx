@@ -17,7 +17,7 @@ const TaskCard = ({ task }) => {
       return;
     }
 
-    // Get location
+    
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
@@ -27,7 +27,7 @@ const TaskCard = ({ task }) => {
       (error) => {
         console.error("Geolocation error:", error);
         toast.error("Could not get location. Uploading without it.");
-        uploadWithLocation(null); // Proceed without location
+        uploadWithLocation(null); 
       }
     );
   };

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import API from "../utils/api";
 import toast from "react-hot-toast";
 
-// We no longer need the Modal or LocationMap component for this solution
 
 const TaskCard = ({ task }) => {
   const [file, setFile] = useState(null);
@@ -58,13 +57,12 @@ const TaskCard = ({ task }) => {
       </p>
       <p className="mt-2">{task.description}</p>
 
-      {/* --- UPDATED LOCATION LINK --- */}
       {task.location?.latitude && (
         <div className="mt-4">
           <a
             href={`https://www.google.com/maps?q=${task.location.latitude},${task.location.longitude}`}
-            target="_blank" // Opens in a new tab
-            rel="noopener noreferrer" // Security best practice
+            target="_blank"
+            rel="noopener noreferrer" 
             className="text-sm text-blue-600 hover:underline font-semibold"
           >
             View Upload Location on Map

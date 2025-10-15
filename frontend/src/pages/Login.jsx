@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom"; // <-- Import Link
+import { useNavigate, Link } from "react-router-dom"; 
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 
@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // We call the login function from context, which now correctly calls the API.
+    
     const loginPromise = login(email, password);
 
     toast.promise(loginPromise, {

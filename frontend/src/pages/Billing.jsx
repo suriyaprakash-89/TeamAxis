@@ -15,7 +15,6 @@ const Billing = () => {
       const toastId = toast.loading("Generating invoice...");
       await API.post("/api/invoices", invoiceData);
       toast.success("Invoice generated and sent!", { id: toastId });
-      // Reset form
       setClientName("");
       setClientEmail("");
       setTotalAmount(0);

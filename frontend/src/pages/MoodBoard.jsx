@@ -40,10 +40,10 @@ const MoodBoard = () => {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success("Entry posted!", { id: toastId });
-      // Reset form and refresh list
+      
       setImage(null);
       setSummary("");
-      document.getElementById("image-input").value = null; // Clear file input
+      document.getElementById("image-input").value = null; 
       fetchEntries();
     } catch (error) {
       toast.error("Failed to post entry.", { id: toastId });
