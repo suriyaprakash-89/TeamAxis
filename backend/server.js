@@ -19,7 +19,7 @@ connectDB();
 mongoose.set("strictQuery", true);
 
 const app = express();
-const whitelist = ["http://localhost:5173", "https://team-axis.vercel.app/"];
+const whitelist = ["http://localhost:5173", "https://team-axis.vercel.app"];
 
 const corsOptions = {
   origin: function (origin, callback) {
