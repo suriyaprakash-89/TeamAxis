@@ -19,7 +19,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <h1 className="text-red-500 font-bold p-4">Deployment Version: 2</h1>
+        
         <Toaster position="top-right" />
         <Routes>
           <Route path="/login" element={<Login />} />
